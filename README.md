@@ -11,5 +11,6 @@ cmsenv
 
 ```
 cd CMSSW_13_3_2/src/HEPData
+cmsenv
 sh compile
 ```
