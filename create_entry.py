@@ -318,17 +318,17 @@ class HEPDataEntryCreator(object):
         #submission.add_record_id(1657397, "inspire")
         #submission.add_additional_resource("Original abstract file", "example_inputs/abstract.txt", copy_file=True)  # for illustration, probably not useful
 
-        for pNN_plot in pNN_plots:
-            pNN_plot_table = self.prepare_pNN_plot_table(pNN_plot=pNN_plot)
-            submission.add_table(pNN_plot_table)
+        #for pNN_plot in pNN_plots:
+        #    pNN_plot_table = self.prepare_pNN_plot_table(pNN_plot=pNN_plot)
+        #    submission.add_table(pNN_plot_table)
 
-        for prefit_plot in prefit_plots:
-            prefit_plot_table = self.prepare_prefit_plot_table(prefit_plot=prefit_plot)
-            submission.add_table(prefit_plot_table)
+        #for prefit_plot in prefit_plots:
+        #    prefit_plot_table = self.prepare_prefit_plot_table(prefit_plot=prefit_plot)
+        #    submission.add_table(prefit_plot_table)
 
-        for postfit_plot in postfit_plots:
-            postfit_plot_table = self.prepare_postfit_plot_table(postfit_plot=postfit_plot)
-            submission.add_table(postfit_plot_table)
+        #for postfit_plot in postfit_plots:
+        #    postfit_plot_table = self.prepare_postfit_plot_table(postfit_plot=postfit_plot)
+        #    submission.add_table(postfit_plot_table)
 
         for limit_plot in limit_plots:
             limit_plot_table = self.prepare_limit_plot_table(limit_plot=limit_plot)
@@ -398,7 +398,7 @@ if __name__ == '__main__':
                 mass_str = '1p5',
                 scenario = 'Dirac',
                 scenario_name = 'Dirac-like',
-                figure_name = 'Figure_011-c.pdf',
+                figure_name = 'Figure_011-d.pdf',
                 position = 'middle right',
                 )
             )
