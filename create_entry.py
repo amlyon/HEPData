@@ -16,11 +16,12 @@ print('-> successful import')
 
 
 class TernaryPlot(object):
-    def __init__(self, mass, mass_str, scenario, scenario_name, position):
+    def __init__(self, mass, mass_str, scenario, scenario_name, figure_name, position):
         self.mass = mass
         self.mass_str = mass_str
         self.scenario = scenario
         self.scenario_name = scenario_name
+        self.figure_name = figure_name
         self.position = position
 
     def print(self):
@@ -28,7 +29,7 @@ class TernaryPlot(object):
 
 
 class LimitPlot(object):
-    def __init__(self, scenario, scenario_name, re, ru, rt, re_str, ru_str, rt_str, figure_number, position):
+    def __init__(self, scenario, scenario_name, re, ru, rt, re_str, ru_str, rt_str, figure_number, figure_name, position):
         self.scenario = scenario
         self.scenario_name = scenario_name
         self.re = re
@@ -38,6 +39,7 @@ class LimitPlot(object):
         self.ru_str = ru_str
         self.rt_str = rt_str
         self.figure_number = figure_number
+        self.figure_name = figure_name
         self.position = position
 
     def print(self):
@@ -259,7 +261,7 @@ class HEPDataEntryCreator(object):
         table.add_variable(obs)
         table.add_variable(exp)
 
-        table.add_image('inputs/2d_hnl_limit_scenario_{}_{}_{}_{}.pdf'.format(limit_plot.scenario, limit_plot.re_str, limit_plot.ru_str, limit_plot.rt_str))
+        table.add_image('inputs/{}'.format(limit_plot.figure_name))
         table.add_additional_resource('Data file', 'inputs/2d_limits_{}_{}_{}_{}.txt'.format(limit_plot.scenario, limit_plot.re_str, limit_plot.ru_str, limit_plot.rt_str), copy_file=True)
 
         return table
@@ -299,7 +301,7 @@ class HEPDataEntryCreator(object):
         table.add_variable(rt)
         table.add_variable(obs)
     
-        table.add_image('inputs/ternary_plot_{}_m_{}_ctau_combined.pdf'.format(ternary_plot.scenario, ternary_plot.mass_str))
+        table.add_image('inputs/{}'.format(ternary_plot.figure_name))
         table.add_additional_resource('Data file', 'inputs/exclusion_{}_m_{}_ctau.txt'.format(ternary_plot.scenario, ternary_plot.mass_str), copy_file=True)
     
         return table
@@ -320,14 +322,6 @@ class HEPDataEntryCreator(object):
             pNN_plot_table = self.prepare_pNN_plot_table(pNN_plot=pNN_plot)
             submission.add_table(pNN_plot_table)
 
-        for limit_plot in limit_plots:
-            limit_plot_table = self.prepare_limit_plot_table(limit_plot=limit_plot)
-            submission.add_table(limit_plot_table)
-
-        for ternary_plot in ternary_plots:
-            ternary_plot_table = self.prepare_ternary_plot_table(ternary_plot=ternary_plot)
-            submission.add_table(ternary_plot_table)
-
         for prefit_plot in prefit_plots:
             prefit_plot_table = self.prepare_prefit_plot_table(prefit_plot=prefit_plot)
             submission.add_table(prefit_plot_table)
@@ -335,6 +329,14 @@ class HEPDataEntryCreator(object):
         for postfit_plot in postfit_plots:
             postfit_plot_table = self.prepare_postfit_plot_table(postfit_plot=postfit_plot)
             submission.add_table(postfit_plot_table)
+
+        for limit_plot in limit_plots:
+            limit_plot_table = self.prepare_limit_plot_table(limit_plot=limit_plot)
+            submission.add_table(limit_plot_table)
+
+        for ternary_plot in ternary_plots:
+            ternary_plot_table = self.prepare_ternary_plot_table(ternary_plot=ternary_plot)
+            submission.add_table(ternary_plot_table)
 
         #for table in submission.tables:
         #    table.keywords["cmenergies"] = [13000]
@@ -352,6 +354,7 @@ if __name__ == '__main__':
                 mass_str = '1p0',
                 scenario = 'Majorana',
                 scenario_name = 'Majorana',
+                figure_name = 'Figure_011-a.pdf',
                 position = 'upper left',
                 )
             )
@@ -362,6 +365,7 @@ if __name__ == '__main__':
                 mass_str = '1p5',
                 scenario = 'Majorana',
                 scenario_name = 'Majorana',
+                figure_name = 'Figure_011-c.pdf',
                 position = 'middle left',
                 )
             )
@@ -372,6 +376,7 @@ if __name__ == '__main__':
                 mass_str = '2p0',
                 scenario = 'Majorana',
                 scenario_name = 'Majorana',
+                figure_name = 'Figure_011-e.pdf',
                 position = 'lower left',
                 )
             )
@@ -382,6 +387,7 @@ if __name__ == '__main__':
                 mass_str = '1p0',
                 scenario = 'Dirac',
                 scenario_name = 'Dirac-like',
+                figure_name = 'Figure_011-b.pdf',
                 position = 'upper right',
                 )
             )
@@ -392,6 +398,7 @@ if __name__ == '__main__':
                 mass_str = '1p5',
                 scenario = 'Dirac',
                 scenario_name = 'Dirac-like',
+                figure_name = 'Figure_011-c.pdf',
                 position = 'middle right',
                 )
             )
@@ -402,6 +409,7 @@ if __name__ == '__main__':
                 mass_str = '2p0',
                 scenario = 'Dirac',
                 scenario_name = 'Dirac-like',
+                figure_name = 'Figure_011-f.pdf',
                 position = 'lower right',
                 )
             )
@@ -418,6 +426,7 @@ if __name__ == '__main__':
                 ru_str = '1p0',
                 rt_str = '0p0',
                 figure_number = '9',
+                figure_name = 'Figure_009-a.pdf',
                 position = 'upper left',
                 )
             )
@@ -433,6 +442,7 @@ if __name__ == '__main__':
                 ru_str = '0p5',
                 rt_str = '0p5',
                 figure_number = '9',
+                figure_name = 'Figure_009-b.pdf',
                 position = 'upper right',
                 )
             )
@@ -448,6 +458,7 @@ if __name__ == '__main__':
                 ru_str = '0p5',
                 rt_str = '0p0',
                 figure_number = '9',
+                figure_name = 'Figure_009-c.pdf',
                 position = 'lower left',
                 )
             )
@@ -463,6 +474,7 @@ if __name__ == '__main__':
                 ru_str = '0p3',
                 rt_str = '0p3',
                 figure_number = '9',
+                figure_name = 'Figure_009-d.pdf',
                 position = 'lower right',
                 )
             )
@@ -478,6 +490,7 @@ if __name__ == '__main__':
                 ru_str = '1p0',
                 rt_str = '0p0',
                 figure_number = '10',
+                figure_name = 'Figure_010-a.pdf',
                 position = 'upper left',
                 )
             )
@@ -493,6 +506,7 @@ if __name__ == '__main__':
                 ru_str = '0p5',
                 rt_str = '0p5',
                 figure_number = '10',
+                figure_name = 'Figure_010-b.pdf',
                 position = 'upper right',
                 )
             )
@@ -508,6 +522,7 @@ if __name__ == '__main__':
                 ru_str = '0p5',
                 rt_str = '0p0',
                 figure_number = '10',
+                figure_name = 'Figure_010-c.pdf',
                 position = 'lower left',
                 )
             )
@@ -523,6 +538,7 @@ if __name__ == '__main__':
                 ru_str = '0p3',
                 rt_str = '0p3',
                 figure_number = '10',
+                figure_name = 'Figure_010-d.pdf',
                 position = 'lower right',
                 )
             )
